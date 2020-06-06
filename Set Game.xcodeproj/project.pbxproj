@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		85E79F90248B641B0051B1A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E79F8F248B641B0051B1A3 /* AppDelegate.swift */; };
 		85E79F92248B641B0051B1A3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E79F91248B641B0051B1A3 /* SceneDelegate.swift */; };
-		85E79F94248B641B0051B1A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E79F93248B641B0051B1A3 /* ContentView.swift */; };
+		85E79F94248B641B0051B1A3 /* ColoredSetGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E79F93248B641B0051B1A3 /* ColoredSetGameView.swift */; };
 		85E79F96248B641C0051B1A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85E79F95248B641C0051B1A3 /* Assets.xcassets */; };
 		85E79F99248B641C0051B1A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85E79F98248B641C0051B1A3 /* Preview Assets.xcassets */; };
 		85E79F9C248B641C0051B1A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85E79F9A248B641C0051B1A3 /* LaunchScreen.storyboard */; };
+		85E79FA4248BF12E0051B1A3 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E79FA3248BF12E0051B1A3 /* SetGame.swift */; };
+		85E79FA6248BF1710051B1A3 /* ColoredSetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E79FA5248BF1710051B1A3 /* ColoredSetGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		85E79F8C248B641B0051B1A3 /* Set Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Set Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E79F8F248B641B0051B1A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85E79F91248B641B0051B1A3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		85E79F93248B641B0051B1A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		85E79F93248B641B0051B1A3 /* ColoredSetGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSetGameView.swift; sourceTree = "<group>"; };
 		85E79F95248B641C0051B1A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85E79F98248B641C0051B1A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		85E79F9B248B641C0051B1A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85E79F9D248B641C0051B1A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85E79FA3248BF12E0051B1A3 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
+		85E79FA5248BF1710051B1A3 /* ColoredSetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSetGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +60,11 @@
 		85E79F8E248B641B0051B1A3 /* Set Game */ = {
 			isa = PBXGroup;
 			children = (
+				85E79FA3248BF12E0051B1A3 /* SetGame.swift */,
+				85E79FA5248BF1710051B1A3 /* ColoredSetGame.swift */,
+				85E79F93248B641B0051B1A3 /* ColoredSetGameView.swift */,
 				85E79F8F248B641B0051B1A3 /* AppDelegate.swift */,
 				85E79F91248B641B0051B1A3 /* SceneDelegate.swift */,
-				85E79F93248B641B0051B1A3 /* ContentView.swift */,
 				85E79F95248B641C0051B1A3 /* Assets.xcassets */,
 				85E79F9A248B641C0051B1A3 /* LaunchScreen.storyboard */,
 				85E79F9D248B641C0051B1A3 /* Info.plist */,
@@ -148,7 +154,9 @@
 			files = (
 				85E79F90248B641B0051B1A3 /* AppDelegate.swift in Sources */,
 				85E79F92248B641B0051B1A3 /* SceneDelegate.swift in Sources */,
-				85E79F94248B641B0051B1A3 /* ContentView.swift in Sources */,
+				85E79FA6248BF1710051B1A3 /* ColoredSetGame.swift in Sources */,
+				85E79FA4248BF12E0051B1A3 /* SetGame.swift in Sources */,
+				85E79F94248B641B0051B1A3 /* ColoredSetGameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
