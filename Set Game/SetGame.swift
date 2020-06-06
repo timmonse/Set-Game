@@ -14,7 +14,7 @@ struct SetGame {
     
     init() {
         cards = Array<Card>()
-        var cardID = 0
+        var cardID = 1
         for shape in cardShape.allCases {
             for color in cardColor.allCases {
                 for fill in cardFill.allCases {
@@ -28,21 +28,22 @@ struct SetGame {
                 }
             }
         }
+        cards.shuffle()
     }
     
-    enum cardShape: CaseIterable {
+    enum cardShape: Int, CaseIterable{
         case shapeOne
         case shapeTwo
         case shapeThree
     }
     
-    enum cardColor: CaseIterable {
+    enum cardColor: Int, CaseIterable{
         case colorOne
         case colorTwo
         case colorThree
     }
     
-    enum cardFill: CaseIterable {
+    enum cardFill: Int, CaseIterable{
         case fillOne
         case fillTwo
         case fillThree
@@ -68,7 +69,7 @@ struct SetGame {
     }
     
     struct Card: Identifiable {
-        var isFaceUp : Bool = false
+        var isFaceUp : Bool = true
         var isMatched: Bool = false
         var content: CardContent
         var id: Int
