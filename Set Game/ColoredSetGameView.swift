@@ -15,7 +15,7 @@ struct ColoredSetGameView: View {
         VStack {
             Button(action: {
                 withAnimation(.easeInOut){
-                    //self.viewModel.newGame()
+                    self.viewModel.newGame()
                 }
             },label: { Text("New Game") })
             .frame(width: 350, height: 10, alignment: Alignment.trailing)
@@ -23,7 +23,7 @@ struct ColoredSetGameView: View {
                 .font(Font.largeTitle)
             Grid(viewModel.currentCards) { card in
                 CardView(viewModel: self.viewModel, card: card).onTapGesture {
-                    
+                    self.viewModel.choose(card: card)
                 }
                 .padding(5)
             }
@@ -45,63 +45,26 @@ struct CardView: View {
     
     @ViewBuilder
     private func body(for size: CGSize) -> some View {
-        if card.isFaceUp || !card.isMatched {
-            //viewModel.getShape(card: card)
+        if card.isChosen || !card.isMatched {
             Group {
-                ZStack {
-                    getShape(card: card, color: viewModel.cardColor[card.content.color.rawValue], fill: viewModel.cardFill[card.content.fill.rawValue])
-                    getShapeStroke(card: card, color: viewModel.cardColor[card.content.color.rawValue], width: 5.0)
+                VStack {
+                    ForEach(0 ..< self.card.content.numberOfShapes+1) { number in
+                        self.viewModel.getShapeView(
+                            card: self.card,
+                            color: self.viewModel.cardColor[self.card.content.color.rawValue],
+                            fill: self.viewModel.cardFill[self.card.content.fill.rawValue],
+                            width: self.strokeWidth)
+                    }
                 }
             }
             .padding(10)
-            .cardify(isFaceUp: card.isFaceUp)
+            .cardify(isFaceUp: true, isChosen: card.isChosen)
             .transition(AnyTransition.scale)
-            
-        }
-    }
-    
-    @ViewBuilder
-    func getShape(card: SetGame.Card, color: Color, fill: Double) -> some View {
-        //return Text("Hello")
-        Group {
-            if(card.content.shape == .shapeOne) {
-                Diamond()
-                .fill(color)
-                .opacity(fill)
-            } else if (card.content.shape == .shapeTwo) {
-                Capsule()
-                .fill(color)
-                .opacity(fill)
-            } else {
-                Rectangle()
-                .fill(color)
-                .opacity(fill)
-            }
-        }
-    }
-    
-    @ViewBuilder
-    func getShapeStroke(card: SetGame.Card, color: Color, width: CGFloat) -> some View {
-        //return Text("Hello")
-        Group {
-            if(card.content.shape == .shapeOne) {
-                Diamond()
-                .stroke(lineWidth: width)
-                .fill(color)
-            } else if (card.content.shape == .shapeTwo) {
-                Capsule()
-                .stroke(lineWidth: width)
-                .fill(color)
-            } else {
-                Rectangle()
-                .stroke(lineWidth: width)
-                .fill(color)
-            }
         }
     }
     
     //MARK: - Drawing Constants
-    
+    private let strokeWidth: CGFloat = 4.0
     private func fontSize(for size: CGSize) -> CGFloat {
         min(size.width, size.height) * 0.7
     }

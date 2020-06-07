@@ -31,6 +31,34 @@ struct SetGame {
         cards.shuffle()
     }
     
+    private var indexOfTheOneAndOnlyFaceUpCard: Int? {
+        get { cards.indices.filter { cards[$0].isChosen }.only }
+        set {
+            for index in cards.indices {
+                if index == newValue {
+                    cards[index].isChosen = true
+                }
+                else {
+                    cards[index].isChosen = false
+                }
+            }
+        }
+    }
+    
+    mutating func choose(card : Card) {
+        if let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isChosen, !cards[chosenIndex].isMatched {
+            if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
+                if cards[chosenIndex].content == cards[potentialMatchIndex].content {
+                    cards[chosenIndex].isMatched = true
+                    cards[potentialMatchIndex].isMatched = true
+                }
+                self.cards[chosenIndex].isChosen = true
+            } else {
+                indexOfTheOneAndOnlyFaceUpCard = chosenIndex
+            }
+        }
+    }
+    
     enum cardShape: Int, CaseIterable{
         case shapeOne
         case shapeTwo
@@ -61,7 +89,7 @@ struct SetGame {
     let fillTwo = cardFill.fillTwo
     let fillThree = cardFill.fillThree
     
-    struct CardContent {
+    struct CardContent: Equatable {
         let shape: cardShape
         let color: cardColor
         let fill: cardFill
@@ -69,7 +97,7 @@ struct SetGame {
     }
     
     struct Card: Identifiable {
-        var isFaceUp : Bool = true
+        var isChosen : Bool = false
         var isMatched: Bool = false
         var content: CardContent
         var id: Int

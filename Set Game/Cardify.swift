@@ -10,9 +10,11 @@ import SwiftUI
 
 struct Cardify: AnimatableModifier {
     var rotation: Double
+    var isChosen: Bool
     
-    init(isFaceUp: Bool) {
+    init(isFaceUp: Bool, isChosen: Bool) {
         rotation = isFaceUp ? 0 : 180
+        self.isChosen = isChosen
     }
     
     var isFaceUp: Bool {
@@ -28,7 +30,9 @@ struct Cardify: AnimatableModifier {
         ZStack {
             Group {
                 RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
-                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(lineWidth: isChosen ? edgeLineWidth * 2 : edgeLineWidth)
+                    .fill(isChosen ? Color(red: 152/255, green: 245/255, blue: 143/255) : Color.black)
                 content
             }
             .opacity(isFaceUp ? 100 : 0)
@@ -47,7 +51,7 @@ struct Cardify: AnimatableModifier {
 }
 
 extension View {
-    func cardify(isFaceUp: Bool) -> some View {
-        self.modifier(Cardify(isFaceUp: isFaceUp))
+    func cardify(isFaceUp: Bool, isChosen: Bool) -> some View {
+        self.modifier(Cardify(isFaceUp: isFaceUp, isChosen: isChosen))
     }
 }
