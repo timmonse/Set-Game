@@ -10,14 +10,27 @@ import SwiftUI
 
 class ColoredSetGame: ObservableObject {
     @Published private var model: SetGame = ColoredSetGame.createSetGame()
+    let cardColors: [Color]
+    let cardFills: [Double]
+    var numberOfCardsToShow: Int
     
     private static func createSetGame() -> SetGame {
         SetGame()
     }
     
-    var cardColor = [Color(red: 50/255, green: 168/255, blue: 151/255), Color(red: 105/255, green: 105/255, blue: 250/255), Color(red: 254/255, green: 189/255, blue: 255/255)]
+    init() {
+        cardColors = [customPink, customGreen, customBlue]
+        cardFills = [fullFill, partialFill, noFill]
+        numberOfCardsToShow = 12
+    }
     
-    var cardFill = [1, 0.5, 0]
+    func getShownCards() -> Array<SetGame.Card> {
+        var temp = Array<SetGame.Card>()
+        for index in 0..<numberOfCardsToShow {
+            temp.append(cards[index])
+        }
+        return temp
+    }
     
     // MARK: - Access to the model
     
@@ -32,17 +45,25 @@ class ColoredSetGame: ObservableObject {
         model.choose(card: card)
     }
     
-    //TODO: - FIX THIS to show the current cards
-    var currentCards: Array<SetGame.Card> {
-        var temp = Array<SetGame.Card>()
-        for index in 0..<12 {
-            temp.append(model.cards[index])
-        }
-        return temp
-    }
-    
     func newGame() {
         model = ColoredSetGame.createSetGame()
+        numberOfCardsToShow = 12
+        
+    }
+    
+    func dealThree() {
+        objectWillChange.send()
+        for card in model.cards {
+            if card.isPartOfAValidSet {
+                model.removeValidSetCards()
+                return
+            }
+        }
+        
+        // Add three cards to those currently shown (if possible)
+        if cards.count - numberOfCardsToShow >= 3 {
+            numberOfCardsToShow += 3
+        }
     }
     
     @ViewBuilder
@@ -92,4 +113,16 @@ class ColoredSetGame: ObservableObject {
             }
         }
     }
+
+    //MARK: - Drawing Constants
+    private let customGreen: Color = Color(red: 50/255, green: 168/255, blue: 151/255)
+    private let customBlue: Color = Color(red: 105/255, green: 105/255, blue: 250/255)
+    private let customPink: Color = Color(red: 254/255, green: 189/255, blue: 255/255)
+    
+    private let fullFill = 1.0
+    private let partialFill = 0.3
+    private let noFill = 0.0
+    
 }
+
+

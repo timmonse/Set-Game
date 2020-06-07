@@ -11,9 +11,11 @@ import Foundation
 struct SetGame {
     
     private(set) var cards: [Card]
+    private(set) var chosenCards: [Card]
     
     init() {
         cards = Array<Card>()
+        chosenCards = Array<Card>()
         var cardID = 1
         for shape in cardShape.allCases {
             for color in cardColor.allCases {
@@ -29,6 +31,7 @@ struct SetGame {
             }
         }
         cards.shuffle()
+
     }
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int? {
@@ -45,16 +48,53 @@ struct SetGame {
         }
     }
     
+    mutating func removeValidSetCards(){
+        // Remove the matching set from the deck
+        for card in chosenCards {
+            let removalIndex = cards.firstIndex(matching: card)!
+            cards.remove(at: removalIndex)
+        }
+        
+        //Clear the chosen cards array
+        chosenCards.removeAll()
+    }
+    
     mutating func choose(card : Card) {
-        if let chosenIndex = cards.firstIndex(matching: card), !cards[chosenIndex].isChosen, !cards[chosenIndex].isMatched {
-            if let potentialMatchIndex = indexOfTheOneAndOnlyFaceUpCard {
-                if cards[chosenIndex].content == cards[potentialMatchIndex].content {
-                    cards[chosenIndex].isMatched = true
-                    cards[potentialMatchIndex].isMatched = true
+        if let chosenIndex = cards.firstIndex(matching: card) {
+            if !cards[chosenIndex].isChosen && !cards[chosenIndex].isPartOfAValidSet {
+                if chosenCards.count == 1 {
+                    // Choose additional card
+                    chosenCards.append(cards[chosenIndex])
+                    cards[chosenIndex].isChosen = true
+                } else if chosenCards.count == 2 {
+                    // Choose third card
+                    chosenCards.append(cards[chosenIndex])
+                    cards[chosenIndex].isChosen = true
+                    
+                    // Check for a valid set
+                    if true {//chosenCards.isSet() {
+                        for card in chosenCards {
+                            let index = cards.firstIndex(matching: card)!
+                            cards[index].isPartOfAValidSet = true
+                        }
+                    }
                 }
-                self.cards[chosenIndex].isChosen = true
-            } else {
-                indexOfTheOneAndOnlyFaceUpCard = chosenIndex
+                else {
+                    if chosenCards.count == 3 {
+                        removeValidSetCards()
+                    }
+                    
+                    // Add the current card
+                    chosenCards.append(cards[chosenIndex])
+                    
+                    // Deselect other cards and select the current card
+                    indexOfTheOneAndOnlyFaceUpCard = chosenIndex
+                }
+            } else if !cards[chosenIndex].isPartOfAValidSet {
+                // Allow for deselection of cards
+                cards[chosenIndex].isChosen = false
+                let chosenIndexFromChosenCards = chosenCards.firstIndex(matching: card)!
+                chosenCards.remove(at: chosenIndexFromChosenCards)
             }
         }
     }
@@ -96,9 +136,9 @@ struct SetGame {
         let numberOfShapes: Int
     }
     
-    struct Card: Identifiable {
+    struct Card: Identifiable, Equatable {
         var isChosen : Bool = false
-        var isMatched: Bool = false
+        var isPartOfAValidSet: Bool = false
         var content: CardContent
         var id: Int
     }

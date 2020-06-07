@@ -34,6 +34,7 @@ struct Diamond: Shape {
         p.addLine(to: rightPoint)
         p.addLine(to: bottomPoint)
         p.addLine(to: leftPoint)
+        p.addLine(to: topPoint)
         return p
     }
 }

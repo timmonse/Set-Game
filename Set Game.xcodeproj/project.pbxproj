@@ -21,6 +21,7 @@
 		85E79FA4248BF12E0051B1A3 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E79FA3248BF12E0051B1A3 /* SetGame.swift */; };
 		85E79FA6248BF1710051B1A3 /* ColoredSetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E79FA5248BF1710051B1A3 /* ColoredSetGame.swift */; };
 		85E79FA8248C092D0051B1A3 /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E79FA7248C092D0051B1A3 /* Cardify.swift */; };
+		85F2699B248D50DB00E78035 /* Array+isSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F2699A248D50DB00E78035 /* Array+isSet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		85E79FA3248BF12E0051B1A3 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 		85E79FA5248BF1710051B1A3 /* ColoredSetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSetGame.swift; sourceTree = "<group>"; };
 		85E79FA7248C092D0051B1A3 /* Cardify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
+		85F2699A248D50DB00E78035 /* Array+isSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+isSet.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				85E79FA7248C092D0051B1A3 /* Cardify.swift */,
 				853A4E42248C13970068813D /* Array+Only.swift */,
 				853A4E40248C138A0068813D /* Array+Identifiable.swift */,
+				85F2699A248D50DB00E78035 /* Array+isSet.swift */,
 				853A4E3C248C12A20068813D /* Grid.swift */,
 				853A4E3E248C130A0068813D /* GridLayout.swift */,
 				85E79F8F248B641B0051B1A3 /* AppDelegate.swift */,
@@ -176,6 +179,7 @@
 				853A4E43248C13970068813D /* Array+Only.swift in Sources */,
 				85E79FA6248BF1710051B1A3 /* ColoredSetGame.swift in Sources */,
 				85E79FA4248BF12E0051B1A3 /* SetGame.swift in Sources */,
+				85F2699B248D50DB00E78035 /* Array+isSet.swift in Sources */,
 				853A4E41248C138A0068813D /* Array+Identifiable.swift in Sources */,
 				853A4E3D248C12A20068813D /* Grid.swift in Sources */,
 				853A4E45248C17F50068813D /* Diamond.swift in Sources */,
@@ -321,6 +325,7 @@
 				DEVELOPMENT_TEAM = NVDJUYZ5B5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Set Game/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -341,6 +346,7 @@
 				DEVELOPMENT_TEAM = NVDJUYZ5B5;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Set Game/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
