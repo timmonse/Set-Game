@@ -52,7 +52,6 @@ struct SetGame {
         for card in chosenCards {
             let removalIndex = cards.firstIndex(matching: card)!
             cards.remove(at: removalIndex)
-            chosenCards.removeAll()
         }
     }
     
@@ -75,17 +74,16 @@ struct SetGame {
                             cards[index].isPartOfAValidSet = true
                         }
                     }
-                }
-                else {
+                } else {
                     if chosenCards.count == 3 && chosenCards.isSet() {
                         removeValidSetCards()
                     }
                     
-                    //Clear the chosen cards array
+                    // Clear the chosen cards array
                     chosenCards.removeAll()
                     
                     // Add the current card
-                    chosenCards.append(cards[chosenIndex])
+                    chosenCards.append(card)
                     
                     // Deselect other cards and select the current card
                     indexOfTheOneAndOnlyFaceUpCard = chosenIndex

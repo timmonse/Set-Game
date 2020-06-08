@@ -27,7 +27,9 @@ class ColoredSetGame: ObservableObject {
     func getShownCards() -> Array<SetGame.Card> {
         var temp = Array<SetGame.Card>()
         for index in 0..<numberOfCardsToShow {
-            temp.append(cards[index])
+            if index < cards.count {
+                temp.append(cards[index])
+            }
         }
         return temp
     }
