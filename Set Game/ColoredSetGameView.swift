@@ -29,7 +29,6 @@ struct ColoredSetGameView: View {
                 .padding(5)
             }
             .padding()
-            
             Button(action: {
                 //withAnimation(.easeInOut){
                     self.viewModel.dealThree()
@@ -52,22 +51,20 @@ struct CardView: View {
     
     @ViewBuilder
     private func body(for size: CGSize) -> some View {
-        if (card.isChosen || !card.isPartOfAValidSet) && viewModel.getShownCards().contains(card) {
-            VStack {
-                ForEach(0 ..< self.card.content.numberOfShapes+1) { number in
-                    self.viewModel.getShapeView(
-                        card: self.card,
-                        color: self.viewModel.cardColors[self.card.content.color.rawValue],
-                        fill: self.viewModel.cardFills[self.card.content.fill.rawValue],
-                        width: self.strokeWidth)
-                        .aspectRatio(4/3, contentMode: .fit)
-                }
+        VStack {
+            ForEach(0 ..< self.card.content.numberOfShapes+1) { number in
+                self.viewModel.getShapeView(
+                    card: self.card,
+                    color: self.viewModel.cardColors[self.card.content.color.rawValue],
+                    fill: self.viewModel.cardFills[self.card.content.fill.rawValue],
+                    width: self.strokeWidth)
+                    .aspectRatio(4/3, contentMode: .fit)
             }
-            .padding(10)
-            .cardify(isFaceUp: true, isChosen: card.isChosen, isPartOfAValidSet: card.isPartOfAValidSet)
-            .aspectRatio(3/4, contentMode: .fit)
-            .transition(.offset(x: CGFloat(Int.random(in: -1000..<1000)), y: CGFloat(Int.random(in: -1000..<1000))))
         }
+        .padding(10)
+        .cardify(isFaceUp: true, isChosen: card.isChosen, isPartOfAValidSet: card.isPartOfAValidSet)
+        .aspectRatio(3/4, contentMode: .fit)
+        //.transition(.offset(x: CGFloat(Int.random(in: -1000..<1000)), y: CGFloat(Int.random(in: -1000..<1000))))
     }
     
     //MARK: - Drawing Constants

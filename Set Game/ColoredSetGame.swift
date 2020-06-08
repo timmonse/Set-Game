@@ -48,7 +48,6 @@ class ColoredSetGame: ObservableObject {
     func newGame() {
         model = ColoredSetGame.createSetGame()
         numberOfCardsToShow = 12
-        
     }
     
     func dealThree() {

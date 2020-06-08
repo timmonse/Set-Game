@@ -30,8 +30,7 @@ struct SetGame {
                 }
             }
         }
-        cards.shuffle()
-
+        //cards.shuffle()
     }
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int? {
@@ -53,10 +52,8 @@ struct SetGame {
         for card in chosenCards {
             let removalIndex = cards.firstIndex(matching: card)!
             cards.remove(at: removalIndex)
+            chosenCards.removeAll()
         }
-        
-        //Clear the chosen cards array
-        chosenCards.removeAll()
     }
     
     mutating func choose(card : Card) {
@@ -72,7 +69,7 @@ struct SetGame {
                     cards[chosenIndex].isChosen = true
                     
                     // Check for a valid set
-                    if true {//chosenCards.isSet() {
+                    if chosenCards.isSet() {
                         for card in chosenCards {
                             let index = cards.firstIndex(matching: card)!
                             cards[index].isPartOfAValidSet = true
@@ -80,9 +77,12 @@ struct SetGame {
                     }
                 }
                 else {
-                    if chosenCards.count == 3 {
+                    if chosenCards.count == 3 && chosenCards.isSet() {
                         removeValidSetCards()
                     }
+                    
+                    //Clear the chosen cards array
+                    chosenCards.removeAll()
                     
                     // Add the current card
                     chosenCards.append(cards[chosenIndex])
